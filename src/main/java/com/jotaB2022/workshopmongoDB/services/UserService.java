@@ -38,9 +38,20 @@ public class UserService {
 	public void delete(String id) {
 		repo.deleteById(id);
 	}
+	
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+		}
+
+	private void updateData(User entity, User obj) {
+
+		entity.setName(obj.getName());
+		entity.setEmail(obj.getEmail());
 
 }
-
+}
 /*
  * public User findById(String id) { Optional <User> user = repo.findById(id);
  * if (user == null) { throw new
